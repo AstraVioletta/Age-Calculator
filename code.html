@@ -3,46 +3,79 @@
 <html>
   
 <head>
-   <!--The head section contains general information about the webpage.-->
-   <title>     </title>
-   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"> </script>
-   <style>
-       /*The style section controls how pieces of your webpage look.*/
+  <!-- color of the webpage-->
+  <title>Age Calculator</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"> </script>
+  <style>
+	  header {
+	  	background-color: #4A5ACD;
+	  	padding: 20px;
+	  	text-align: center;
+	  	font-size: 35px;
+	  	color: #5a3d88;
+		}
+		.app {
+	  	background-color: #4A5ACD;
+			padding: 30px;
+			color: #5a3d88;
+		 }
+	</style>
+</head>
+
    </style>
 </head>
 
 
 <body>
-   <!--The body section contains the content of your webpage.-->
-   <header>
-       <h2>    </h2>
-   </header>
-   <div x-data="webApp">
-   
+   <!--Used AI to help with syntaxes and organized-->
+   <!--This part is the trigger boxes-->
+   <div x-data="webApp()">
+    <header>
+        <h2>Age Calculator</h2>
+    </header>
 
+    <div>
+        <label>Enter your birth year:</label><br>
+        <input type="number" x-model.number="birthDay" placeholder="e.g. 2000">
+    </div>
 
+    <br>
+
+    <div>
+        <label>Enter the current year:</label><br>
+        <input type="number" x-model.number="currentDate" placeholder="e.g. 2026">
+    </div>
+
+    <br>
+
+    <button @click="calculateAge()">Calculate Age</button>
+
+    <p>Your age is: <span x-text="age"></span></p>
    </div>
   
-   <footer>
+
+<footer>
        <p>© 2026-2027<br>
        AP Computer Science Principles<br>
        George Washington High School</p>
-   </footer>
+</footer>
+   
   
    <script>
-       //The script section contains the JavaScript logic
-       document.addEventListener('alpine:init', () => {
-           Alpine.data('webApp', () => ({
-               
-
-
-
-
-
-
-           }));
-       });
+       //AI giving the part of code that only allows positive and no negatives.
+       //
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('webApp', () => ({
+          birthDay: null,
+          currentDate: null, 
+          age: 0,
+           calculateAge() {
+               if (this.birthDay && this.currentDate) {
+                   this.age = Math.max(0, this.currentDate - this.birthDay);
+               }
+        }
+    }));
+});
    </script>
 </body>
 </html>
-
